@@ -1,6 +1,12 @@
+import logging
 from flask import Flask, request, jsonify
+from flask_cors import CORS
+from dictionary import get_city_info
 
 app = Flask(__name__)
+CORS(app)
+logging.basicConfig(level=logging.DEBUG)
+
 
 # Sample data for mock suggestions (replace with real API or AI integration later)
 MOCK_SUGGESTIONS = [
@@ -23,11 +29,10 @@ def get_suggestions():
         return jsonify({"error": "No query provided"}), 400
 
     # Mock response: Filter suggestions by query (case-insensitive search)
-    filtered_suggestions = [
-        suggestion
-        for suggestion in MOCK_SUGGESTIONS
-        if query.lower() in suggestion["name"].lower()
-    ]
+    filtered_suggestions = get_city_info(query)
+    logging.info(f"Filtered suggestions: {filtered_suggestions} for query: {query}.")
+    if filtered_suggestions is None:
+        return jsonify({"error": "No matching city found"}), 404
 
     # Return filtered suggestions (or all if no matches for simplicity)
     return jsonify({"suggestions": filtered_suggestions or MOCK_SUGGESTIONS})
