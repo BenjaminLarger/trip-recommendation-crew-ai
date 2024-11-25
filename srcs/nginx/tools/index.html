@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Recommender</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" /> 
 </head>
 <body>
   <header>
@@ -18,9 +19,12 @@
     </div>
     <div id="map" class="map-container">
       <!-- Map will be rendered here -->
+      <div id="map" style="height: 400px; width: 100%;"></div>
+      <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     </div>
   </main>
   <script src="app.js"></script>
+  <script src="map.js"></script>
 </body>
 </html>
 
