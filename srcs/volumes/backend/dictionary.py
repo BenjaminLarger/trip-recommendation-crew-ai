@@ -3,7 +3,7 @@ import csv
 # Path to your CSV file
 CSV_FILE_PATH = '/build/utils/worldcities.csv'
 
-def get_city_info(city_name):
+def get_cities_from_dictionary(city_name):
     """
     Returns city information (name, latitude, longitude) for a given city name.
 

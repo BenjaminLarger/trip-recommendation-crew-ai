@@ -4,7 +4,6 @@
 const submitButton = document.getElementById('submit-button');
 const travelInput = document.getElementById('travel-input');
 const mapContainer = document.getElementById('map');
-
 // Backend API endpoint
 const API_ENDPOINT = ' http://127.0.0.1:8888/api/suggestions'; // Replace with your actual backend endpoint
 
@@ -17,9 +16,6 @@ function handleFormSubmission() {
     alert('Please enter a destination or preference!');
     return;
   }
-
-  // Show loading indicator (you can customize this)
-  // mapContainer.innerHTML = '<p>Loading suggestions...</p>';
 
   // Send the user input to the backend API
   fetch(API_ENDPOINT, {
@@ -37,11 +33,10 @@ function handleFormSubmission() {
     })
     .then((data) => {
       console.log('Received data:', data);
-      updateMap(data.suggestions);
+      updateMap(data);
     })
     .catch((error) => {
       console.error('Error fetching suggestions:', error);
-      // mapContainer.innerHTML = '<p>Failed to load suggestions. Please try again.</p>';
     });
 }
 

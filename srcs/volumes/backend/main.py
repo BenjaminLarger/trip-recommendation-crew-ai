@@ -1,19 +1,22 @@
 import logging
+import requests
+import os
 from flask import Flask, request, jsonify
 from flask_cors import CORS
-from dictionary import get_city_info
+from dictionary import get_cities_from_dictionary
+from gemini import get_cities
+import google.generativeai as genai
+import os
 
+logging.basicConfig(level=logging.INFO)
 app = Flask(__name__)
 CORS(app)
-logging.basicConfig(level=logging.DEBUG)
 
 
-# Sample data for mock suggestions (replace with real API or AI integration later)
-MOCK_SUGGESTIONS = [
-    {"name": "Paris", "latitude": 48.8566, "longitude": 2.3522},
-    {"name": "New York", "latitude": 40.7128, "longitude": -74.0060},
-    {"name": "Tokyo", "latitude": 35.6895, "longitude": 139.6917},
-]
+# Get GEMENI_API_KEY from the environment
+GEMENI_API_KEY = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key="GEMENI_API_KEY")
+model = genai.GenerativeModel("gemini-1.5-flash")
 
 @app.route('/')
 def home():
@@ -28,14 +31,22 @@ def get_suggestions():
     if not query:
         return jsonify({"error": "No query provided"}), 400
 
-    # Mock response: Filter suggestions by query (case-insensitive search)
-    filtered_suggestions = get_city_info(query)
-    logging.info(f"Filtered suggestions: {filtered_suggestions} for query: {query}.")
-    if filtered_suggestions is None:
-        return jsonify({"error": "No matching city found"}), 404
+    # Call the Interrogator API
+    cities = get_cities(query)
+    #cities = ['Sevilla']
 
-    # Return filtered suggestions (or all if no matches for simplicity)
-    return jsonify({"suggestions": filtered_suggestions or MOCK_SUGGESTIONS})
+    # For each city, select only the ones present in the dictionary. City info contain{'name', 'latitude', 'longitude'}
 
+    cities_info_json = {}
+    for city in cities:
+      city_info = get_cities_from_dictionary(city)
+      if city_info:
+        cities_info_json[city] = {
+          'latitude': city_info['latitude'],
+          'longitude': city_info['longitude']
+        }
+
+    return jsonify(cities_info_json)
+    
 if __name__ == '__main__':
     app.run(debug=True)

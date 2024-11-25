@@ -9,28 +9,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 
 // Function to update the map with new suggestions
 function updateMap(suggestions) {
-  // Clear existing map content
-  // mapContainer.innerHTML = '';
-
-  // If no suggestions, show a message
-  if (!suggestions || suggestions.length === 0) {
-    mapContainer.innerHTML = '<p>No suggestions found for your input.</p>';
-    return;
-  }
-
-  _name = suggestions.name;
-  _latitude = suggestions.latitude;
-  _longitude = suggestions.longitude;
-  console.log('Name:', _name);
-  console.log('Latitude:', _latitude);
-  console.log('Longitude:', _longitude);
-
-  markers.forEach(marker => map.removeLayer(marker));
-  markers = [];
-  // Create a marker at the specified coordinates
-  var marker = L.marker([_latitude, _longitude]).addTo(map);
-  markers.push(marker);
-
-// Set the view of the map to the new marker
-  map.setView([_latitude, _longitude], 10);
+  // suggestions = Besancon
+// : 
+for (const [city, coordinates] of Object.entries(suggestions)) {
+  console.log(`City: ${city}`);
+  console.log(`Latitude: ${coordinates.latitude}`);
+  console.log(`Longitude: ${coordinates.longitude}`);
+  var marker = L.marker([coordinates.latitude, coordinates.longitude]).addTo(map);
+}
 }
