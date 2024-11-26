@@ -32,6 +32,10 @@ def get_cities_from_dictionary(city, country):
     reader = csv.DictReader(file)
 
     for row in reader:
+      if row['city_ascii'].strip().lower() == city_name:
+        difference = highlight_differences(row['country'].strip().lower(), country_name)
+        if difference:
+          logging.info(f"Country name difference: {difference}, for city: {city_name}, in country: {row['country'].strip().lower()}")
       if row['city_ascii'].strip().lower() == city_name.strip() and row['country'].strip().lower() == country_name.strip():
         return {
           'latitude': float(row['lat']),

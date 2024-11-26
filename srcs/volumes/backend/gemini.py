@@ -42,6 +42,9 @@ def parse_gemini_prompt(prompt):
             country = country.strip().replace("'", "")
             country = country.strip().replace(",", "")
             country = country.strip().replace("\"", "")
+            country = country.strip().replace("\n", "")
+            country = country.strip().replace("]", "")
+            country = country.strip().replace("`", "")
             logging.info(f"City: {city}, Country: {country}")
             # Append the city and country to the lists
             cities.append(city)
@@ -64,7 +67,7 @@ def get_cities(user_input):
 
         # Prepare the API request
         prompt = (
-            "Generate a list of cities and their countries based on the input. "
+            "Generate a list of cities in english and their countries based on the input. "
             "Return the result in this JSON format:\n"
             "[{'CityName': 'CountryName'},"
             "{'CityName': 'CountryName'},"
@@ -75,6 +78,7 @@ def get_cities(user_input):
 
         logging.info(f"Prompt: {prompt}")
         response = model.generate_content(prompt)
+        logging.info(f"Response gemeni: {response.text}")
         # response = "```json [{'Barcelona': 'Spain'}, {'Lisbon': 'Portugal'}, {'Athens': 'Greece'}, {'Valletta': 'Malta'}, {'Nice': 'France'}]"
         # logging.info(f"Response: {response}")
 

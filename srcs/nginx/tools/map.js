@@ -16,6 +16,10 @@ function updateMap(suggestions) {
   //   "Paris": { "latitude": 48.856613, "longitude": 2.352222 },
   //   "Lyon": { "latitude": 45.764043, "longitude": 4.835659 }
   // };
+  // Clear existing markers
+  for (const marker of markers) {
+    map.removeLayer(marker);
+  }
   console.log('Updating map with new suggestions:', suggestions);
   for (const [city, coordinates] of Object.entries(suggestions)) {
     if (coordinates && coordinates.latitude && coordinates.longitude) {

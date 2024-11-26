@@ -17,6 +17,12 @@ function handleFormSubmission() {
     return;
   }
 
+  // If userInput 400 error, the API will return an error message
+  if (userInput.includes('error')) {
+    alert('Please provide an ai friendly prompt. Example : I want to visit warm cities with beautiful beaches in Europe.');
+    return;
+  }
+
   // Send the user input to the backend API
   fetch(API_ENDPOINT, {
     method: 'POST',

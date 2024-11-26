@@ -23,6 +23,8 @@ def get_suggestions():
 
     # Call the Interrogator API
     cities_json_gemini = get_cities(query)
+    if cities_json_gemini.get('error') or cities_json_gemini == {}:
+        return jsonify(cities_json_gemini), 400
     #cities = ['Sevilla', 'Malaga', 'Granada', 'Cordoba', 'Cadiz', 'Huelva', 'Jaen', 'Almeria']
 
     # Get city, latitude, and longitude information from the dictionary
