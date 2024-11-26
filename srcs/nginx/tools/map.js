@@ -11,10 +11,21 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function updateMap(suggestions) {
   // suggestions = Besancon
 // : 
-for (const [city, coordinates] of Object.entries(suggestions)) {
-  console.log(`City: ${city}`);
-  console.log(`Latitude: ${coordinates.latitude}`);
-  console.log(`Longitude: ${coordinates.longitude}`);
-  var marker = L.marker([coordinates.latitude, coordinates.longitude]).addTo(map);
-}
+  // suggestions = {
+  //   "Besancon": { "latitude": 47.237829, "longitude": 6.024053 },
+  //   "Paris": { "latitude": 48.856613, "longitude": 2.352222 },
+  //   "Lyon": { "latitude": 45.764043, "longitude": 4.835659 }
+  // };
+  console.log('Updating map with new suggestions:', suggestions);
+  for (const [city, coordinates] of Object.entries(suggestions)) {
+    if (coordinates && coordinates.latitude && coordinates.longitude) {
+      console.log(`City: ${city}`);
+      console.log(`Latitude: ${coordinates.latitude}`);
+      console.log(`Longitude: ${coordinates.longitude}`);
+      var marker = L.marker([coordinates.latitude, coordinates.longitude]).addTo(map);
+      markers.push(marker);
+    } else {
+      console.log('Invalid city coordinates:', city, coordinates);
+    }
+  }
 }
