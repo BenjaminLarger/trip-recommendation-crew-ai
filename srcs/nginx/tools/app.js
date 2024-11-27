@@ -17,11 +17,9 @@ function handleFormSubmission() {
     return;
   }
 
-  // If userInput 400 error, the API will return an error message
-  if (userInput.includes('error')) {
-    alert('Please provide an ai friendly prompt. Example : I want to visit warm cities with beautiful beaches in Europe.');
-    return;
-  }
+  // Add loading state to the submit button
+  submitButton.disabled = true;
+  submitButton.innerHTML = 'Loading...';
 
   // Send the user input to the backend API
   fetch(API_ENDPOINT, {
@@ -35,14 +33,21 @@ function handleFormSubmission() {
       if (!response.ok) {
         throw new Error(`Error: ${response.statusText}`);
       }
+      submitButton.disabled = false;
+      submitButton.innerHTML = 'Submit';
       return response.json();
     })
     .then((data) => {
+      submitButton.disabled = false;
+      submitButton.innerHTML = 'Submit';
       console.log('Received data:', data);
       updateMap(data);
     })
     .catch((error) => {
+      submitButton.disabled = false;
+      submitButton.innerHTML = 'Submit';
       console.error('Error fetching suggestions:', error);
+      alert('Failed to fetch suggestions. Please try again!');
     });
 }
 

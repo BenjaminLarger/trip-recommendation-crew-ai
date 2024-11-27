@@ -1,87 +1,95 @@
 /* styles.css */
 
-/* General styles */
+/* Reset and base styles */
 body {
-  font-family: Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  line-height: 1.6;
-  background-color: #f9f9f9;
+  font-family: Arial, sans-serif;
+  background-color: #a4c1c8;
   color: #333;
 }
 
 header {
-  background-color: #0077cc;
+  background-color: #2a6e9c; /* Similar to TripAdvisor's greenish-blue tones */
   color: white;
-  padding: 1rem;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 20px 0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-h1 {
+header h1 {
   margin: 0;
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-weight: bold;
 }
 
-/* Main content styles */
+/* Main content */
 main {
-  padding: 1rem;
+  padding: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
 }
 
 .input-container {
-  margin-bottom: 1rem;
-  text-align: center;
+  margin-bottom: 20px;
 }
 
-label {
+.input-container label {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
   display: block;
-  margin-bottom: 0.5rem;
-  font-size: 1rem;
 }
 
-input[type="text"] {
-  width: 80%;
-  padding: 0.5rem;
+.input-container input[type="text"] {
+  padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  box-sizing: border-box;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: calc(100% - 120px); /* Adjust for button width */
+  display: inline-block;
 }
 
-button {
-  background-color: #0077cc;
-  color: white;
-  border: none;
-  padding: 0.5rem 1rem;
+.input-container button {
+  padding: 10px 20px;
   font-size: 1rem;
+  color: white;
+  background-color: #2a6e9c;
+  border: none;
+  border-radius: 4px;
   cursor: pointer;
-  border-radius: 4px;
-  margin-top: 0.5rem;
+  margin-left: 10px;
+  transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #005fa3;
+.input-container button:hover {
+  background-color: #1f5b7c;
 }
 
-/* Map container styles */
+/* Map container */
 .map-container {
-  height: 60vh;
-  width: 100%;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  margin-top: 20px;
+  border-radius: 8px;
   overflow: hidden;
-  background-color: #e0e0e0;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-/* Responsive design */
+#map {
+  height: 400px;
+  width: 100%;
+  border-radius: 8px;
+}
+
 @media (max-width: 768px) {
-  input[type="text"] {
-    width: 100%;
+  header h1 {
+    font-size: 1.5rem;
   }
 
-  button {
-    width: 100%;
-    padding: 0.75rem;
+  .input-container input[type="text"] {
+    width: calc(100% - 110px); /* Adjust for smaller screen space */
   }
 }
 
