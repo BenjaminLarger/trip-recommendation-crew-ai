@@ -16,7 +16,7 @@ logs:
 nginx:
 	docker exec -it nginx /bin/sh
 
-nginx_restart:
+restart_nginx:
 	docker restart nginx
 
 backend:

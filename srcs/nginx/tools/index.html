@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Travel Recommender</title>
@@ -9,22 +9,148 @@
 </head>
 <body>
   <header>
-    <h1>Travel Recommender</h1>
+    <h1>AI Travel Recommendation</h1>
   </header>
   <main>
-    <div class="input-container">
-      <label for="travel-input">What kind of travel would you like?</label>
-      <input type="text" id="travel-input" placeholder="Type your preferences..." style="width: 80%;">
-      <button id="submit-button">Search</button>
+    <div class="input-container" style="max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+      <h2 style="text-align: center;">Plan Your Perfect Trip</h2>
+
+      <label for="travel-type" style="display: block; margin-top: 10px;">Traveler type?</label>
+      <select id="travel-type" style="width: 100%; padding: 8px; margin-top: 5px;">
+        <option value="" disabled selected>Select your travel type</option>
+        <option value="couple">Couple</option>
+        <option value="relaxation">Family</option>
+        <option value="cultural">Solo</option>
+      </select>
+
+      <label for="travel-budget" style="display: block; margin-top: 10px;">Budget?</label>
+      <select id="travel-budget" style="width: 100%; padding: 8px; margin-top: 5px;">
+        <option value="" disabled selected>Select your travel budget</option>
+        <option value="budget">Budget</option>
+        <option value="mid'range">Mid range</option>
+        <option value="luxury">Luxury</option>
+      </select>
+
+      <label for="travel-time" style="display: block; margin-top: 10px;">When?</label>
+      <select id="travel-time" style="width: 100%; padding: 8px; margin-top: 5px;">
+        <option value="" disabled selected>Select the month you plan to travel</option>
+        <option value="january">January</option>
+        <option value="february">February</option>
+        <option value="march">March</option>
+        <option value="april">April</option>
+        <option value="may">May</option>
+        <option value="june">June</option>
+        <option value="july">July</option>
+        <option value="august">August</option>
+        <option value="september">September</option>
+        <option value="october">October</option>
+        <option value="november">November</option>
+        <option value="december">December</option>
+      </select>
+
+      <label for="travel-region" style="display: block; margin-top: 10px;">Geographic Region?</label>
+      <select id="travel-region" style="width: 100%; padding: 8px; margin-top: 5px;">
+        <option value="" disabled selected>Where would you like to go</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="north-america">North America</option>
+        <option value="south-america">South America</option>
+        <option value="africa">Africa</option>
+        <option value="oceania">Oceania</option>
+        <option value="antarctica">Antarctica</option>
+      </select>
+
+      <label for="travel-activity" style="display: block; margin-top: 10px;">Activities?</label>
+<div id="travel-activity" style="margin-top: 5px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;">
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="beach"> Beach
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="nature"> Nature
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="culture"> Culture
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="night-life"> Night Life
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="shopping"> Shopping
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="adventure"> Adventure
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="wellness"> Wellness
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="food"> Food
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="sports"> Sports
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="sightseeing"> Sightseeing
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="family"> Family
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="romantic"> Romantic
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="historical"> Historical
+  </label>
+  <label style="display: block; margin-bottom: 5px;">
+    <input type="checkbox" name="activity" value="festivals"> Festivals
+  </label>
+</div>
+
+      
+      <label for="departure-city" style="display: block; margin-top: 10px;">Where are you departing from?</label>
+      <input 
+        type="text" 
+        id="departure-city" 
+        placeholder="Enter your departure location" 
+        style="width: 100%; padding: 8px; margin-top: 5px;" 
+        oninput="fetchCities(this.value)"
+        autocomplete="off"
+      />
+      <ul id="city-suggestions" style="list-style: none; padding: 0; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; max-height: 150px; overflow-y: auto; display: none; background-color: #fff;">
+        <!-- Suggestions will be dynamically added here -->
+      </ul>
+
+      
+      <!--<label for="travel-input-location" style="display: block; margin-top: 10px;">Where would you like to go?</label>
+      <input type="text" id="travel-input-location" placeholder="Enter geographic zone" style="width: 100%; padding: 8px; margin-top: 5px;">
+
+      <label for="travel-input-departure" style="display: block; margin-top: 10px;">Where are you departing from?</label>
+      <input type="text" id="travel-input-departure" placeholder="Enter your departure location" style="width: 100%; padding: 8px; margin-top: 5px;">
+
+      <label for="travel-input-date" style="display: block; margin-top: 10px;">When are you planning to travel?</label>
+      <input type="date" id="travel-input-date" style="width: 100%; padding: 8px; margin-top: 5px;">
+
+      <label for="travel-input-budget" style="display: block; margin-top: 10px;">What's your budget?</label>
+      <input type="number" id="travel-input-budget" placeholder="Enter your budget in EUR" style="width: 100%; padding: 8px; margin-top: 5px;">
+    
+      <label for="travel-input-duration" style="display: block; margin-top: 10px;">How long will your trip be?</label>
+      <input type="number" id="travel-input-duration" placeholder="Enter duration in days" style="width: 100%; padding: 8px; margin-top: 5px;">
+    
+      <label for="travel-input-activities" style="display: block; margin-top: 10px;">What kind of activities would you like to do?</label>
+      <textarea id="travel-input-activities" placeholder="E.g., hiking, sightseeing, shopping, etc." style="width: 100%; padding: 8px; margin-top: 5px; resize: vertical;"></textarea>
+    -->
+      <button id="submit-button" style="width: 100%; padding: 10px; margin-top: 15px; background-color: #007BFF; color: white; border: none; border-radius: 4px; cursor: pointer;">Search</button>
     </div>
+
     <div id="map" class="map-container">
       <!-- Map will be rendered here -->
       <div id="map" style="height: 400px; width: 100%;"></div>
       <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
     </div>
   </main>
-  <script src="app.js"></script>
+  <!--<script src="app.js"></script>-->
   <script src="map.js"></script>
+  <script src="input.js"></script>
 </body>
 </html>
 

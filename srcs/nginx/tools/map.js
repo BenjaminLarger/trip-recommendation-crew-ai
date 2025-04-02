@@ -30,3 +30,16 @@ function updateMap(suggestions) {
     }
   }
 }
+
+function updateMapCityDeparture(city, latitude, longitude) {
+  for (const marker of markers) {
+    map.removeLayer(marker);
+  }
+  if (latitude && longitude) {
+    var marker = L.marker([latitude, longitude]).addTo(map);
+    markers.push(marker);
+    map.setView([latitude, longitude], 10); // Zoom in on the selected city
+  } else {
+    console.log('Invalid city coordinates:', city, latitude, longitude);
+  }
+}

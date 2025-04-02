@@ -10,7 +10,7 @@ services:
     volumes:
       - ./volumes/nginx:/build
     ports:
-      - 8443:80
+      - 8080:80
     env_file:
       - .env
     networks:
@@ -29,7 +29,6 @@ services:
       - .env
     networks:
       - app_network
-
 
 networks:
   app_network:
