@@ -1,0 +1,27 @@
+city_selector_task:
+  description: >
+      Analyze and select the 10 best city for the trip based 
+      on specific criteria such as weather patterns, seasonal
+      events, and travel costs. This task involves comparing
+      multiple cities, considering factors like current weather
+      conditions, upcoming cultural or seasonal events, and
+      overall travel expenses. The goal is to provide a list of cities
+      that align with the user's preferences and budget.
+
+      Traveler type: {travelType}
+      Trip budget {travelBudget}
+      Trip Date:: {travelTime}
+      Trip region: {travelRegion}
+      Traveling from: {travelActivity}
+      Traveler Interests: {departureCity}
+  expected_output: >
+    For the 10 cities selected, provide the following information:
+    - City name
+    - Country name
+    - Match score (out of 100), that represent how does the selected city match the user expectations
+    - Weather forecast for {travelTime} in the city
+    - Seasonal events or festivals happening during that time
+    - Estimated travel costs (flights, accommodation, etc.)
+    - Daily budget for the trip
+  agent: city_selector_agent
+  output_file: /build/output/research.json

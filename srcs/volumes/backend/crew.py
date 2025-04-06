@@ -1,12 +1,49 @@
-from crewai import Agent, Crew, Process, Task
+from crewai import Agent, Task, Crew
+from crewai.project import CrewBase, agent, crew, task
+from crewai_tools import SerperDevTool
 from pydantic import BaseModel, Field
-from typing import List, Dict
-from datetime import datetime
+from typing import List
+
 
 class CityResearchPoint(BaseModel):
-    cities: List[str] = Field(desciption="List of your top 10 cities that best match the user's query")
-    match_score: List[float] = Field(description="List of match scores for each city")
-    daily_budget: List[int] = Field(description="List of daily budgets for each city")
-    forecast_weather: List[str] = Field(description="List of weather forecasts for each city")
-    attractions: List[str] = Field(description="List of attractions for each city")
-    reason_of_picking: List[str] = Field(description="List of reasons for picking each city")
+    """
+    Structure of the agent output expected
+    """
+
+    city: List[str] = Field(description="City name")
+    country: List[str] = Field(description="Country name")
+    match_score: List[float] = Field(description="Match score for the city")
+    weather: List[str] = Field(
+        description="Weather forecast in the city at the corresponding month"
+    )
+    events: List[str] = Field(
+        description="Events happening in the city at the corresponding month"
+    )
+    travel_cost: List[float] = Field(description="Travel cost to the city")
+    daily_budget: List[float] = Field(description="Daily budget for the trip")
+
+
+@CrewBase
+class LatestAiDevelopmentCrew:
+    @agent
+    def city_selector_agent(self) -> Agent:
+        return Agent(
+            config=self.agents_config["city_selector_agent"],
+            verbose=True,
+            tools=[SerperDevTool()],
+        )
+
+    @task
+    def city_selector_task(self) -> Task:
+        return Task(
+            config=self.tasks_config["city_selector_task"],
+            output_json=CityResearchPoint,
+        )
+
+    @crew
+    def crew(self) -> CrewBase:
+        return Crew(
+            agents=self.agents,
+            tasks=self.tasks,
+            verbose=True,
+        )

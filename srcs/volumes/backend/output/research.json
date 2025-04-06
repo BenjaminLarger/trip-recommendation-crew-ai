@@ -1,0 +1,86 @@
+{
+  "city": [
+    "Cape Town",
+    "Marrakech",
+    "Nairobi",
+    "Victoria Falls",
+    "Zanzibar",
+    "Cairo",
+    "Windhoek",
+    "Accra",
+    "Durban",
+    "Tunis"
+  ],
+  "country": [
+    "South Africa",
+    "Morocco",
+    "Kenya",
+    "Zimbabwe",
+    "Tanzania",
+    "Egypt",
+    "Namibia",
+    "Ghana",
+    "South Africa",
+    "Tunisia"
+  ],
+  "match_score": [
+    90.0,
+    88.0,
+    85.0,
+    84.0,
+    82.0,
+    80.0,
+    75.0,
+    73.0,
+    72.0,
+    70.0
+  ],
+  "weather": [
+    "Warm and sunny, average 25°C",
+    "Mild and pleasant, average 21°C",
+    "Cool and dry, average 20°C",
+    "Mild temperatures, ideal for viewing falls",
+    "Warm, pleasant beaches, average 28°C",
+    "Mild and dry, average 22°C",
+    "Warm and dry, average 30°C",
+    "Warm and humid, average 28°C",
+    "Pleasant 24°C, good for beach activities",
+    "Temperatures around 20°C, mild"
+  ],
+  "events": [
+    "Cape Town International Jazz Festival",
+    "Marrakech International Film Festival",
+    "Nairobi Restaurant Week",
+    "Zambezi International Music Festival",
+    "Zanzibar International Film Festival",
+    "Cairo Biennale",
+    "Namibia Wine Festival",
+    "Homowo Festival in Accra",
+    "Durban International Film Festival",
+    "Medina Festival in Tunis"
+  ],
+  "travel_cost": [
+    1500.0,
+    1200.0,
+    1300.0,
+    1600.0,
+    1100.0,
+    900.0,
+    800.0,
+    850.0,
+    1000.0,
+    700.0
+  ],
+  "daily_budget": [
+    250.0,
+    300.0,
+    200.0,
+    400.0,
+    180.0,
+    150.0,
+    100.0,
+    120.0,
+    220.0,
+    80.0
+  ]
+}
